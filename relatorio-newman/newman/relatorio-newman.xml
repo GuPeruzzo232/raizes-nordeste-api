@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Raízes do Nordeste API" tests="48" time="1.670">
+  <testsuite name="01 Autenticação / Login matriz@raizes.com.br" id="bddedffc-0988-4616-935b-49c3424d63b9" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.270">
+    <testcase name="Status 200" time="0.270" classname="01AutenticacaoLoginMatrizRaizesComBr"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login maria@email.com" id="b0f1fc75-9d00-44d7-b29d-e5585364fbda" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.084">
+    <testcase name="Status 200" time="0.084" classname="01AutenticacaoLoginMariaEmailCom"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login atendente.recife@raizes.com.br" id="0ecd9465-2a8e-4a17-b383-6e16e25c3371" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.085">
+    <testcase name="Status 200" time="0.085" classname="01AutenticacaoLoginAtendenteRecifeRaizesComBr"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login cozinha.recife@raizes.com.br" id="2b1a959c-0b8e-493d-b1ff-76cfe1942f9a" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.082">
+    <testcase name="Status 200" time="0.082" classname="01AutenticacaoLoginCozinhaRecifeRaizesComBr"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login gerente.recife@raizes.com.br" id="1f33a94f-ea56-41db-bad8-a106fa1fda72" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.082">
+    <testcase name="Status 200" time="0.082" classname="01AutenticacaoLoginGerenteRecifeRaizesComBr"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login gerente.salvador@raizes.com.br" id="123919c3-5555-4cf1-bfdc-f1df47d87546" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.082">
+    <testcase name="Status 200" time="0.082" classname="01AutenticacaoLoginGerenteSalvadorRaizesComBr"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Login com senha errada (401)" id="343dd8e4-1fb1-424b-8e5c-5d5b0bad89f6" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.089">
+    <testcase name="Status 401" time="0.089" classname="01AutenticacaoLoginComSenhaErrada401"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Cadastro de cliente com consentimento" id="70bba91c-338b-42e0-9f33-d0d7e039554c" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.113">
+    <testcase name="Status 201" time="0.113" classname="01AutenticacaoCadastroDeClienteComConsentimento"/>
+  </testsuite>
+  <testsuite name="01 Autenticação / Cadastro sem aceite dos termos (422)" id="529e6122-d1fa-4b0b-a567-d1df1a24a97e" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="Status 422" time="0.007" classname="01AutenticacaoCadastroSemAceiteDosTermos422"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Listar unidades" id="9aae5b14-c1ab-424e-bdcf-fb1baea56a2c" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.014">
+    <testcase name="Status 200" time="0.014" classname="02CardapioEEstoqueListarUnidades"/>
+    <testcase name="3 unidades" time="0.014" classname="02CardapioEEstoqueListarUnidades"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Cardápio Recife hoje" id="29c4f54b-9d84-44b0-938f-ca1e2510a743" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.046">
+    <testcase name="Status 200" time="0.046" classname="02CardapioEEstoqueCardapioRecifeHoje"/>
+    <testcase name="Sem acarajé em Recife" time="0.046" classname="02CardapioEEstoqueCardapioRecifeHoje"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Cardápio Recife em junho (itens juninos)" id="b0fda779-f146-4533-a3df-c5fddd9c4285" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.019">
+    <testcase name="Status 200" time="0.019" classname="02CardapioEEstoqueCardapioRecifeEmJunhoItensJuninos"/>
+    <testcase name="Canjica junina aparece" time="0.019" classname="02CardapioEEstoqueCardapioRecifeEmJunhoItensJuninos"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Cardápio Salvador" id="a6f24668-fa6a-4cd2-9623-f5f17233433d" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.012">
+    <testcase name="Status 200" time="0.012" classname="02CardapioEEstoqueCardapioSalvador"/>
+    <testcase name="Acarajé em Salvador" time="0.012" classname="02CardapioEEstoqueCardapioSalvador"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Estoque Recife (gerente)" id="e20b5062-f3be-4e81-ab10-a4cd3027dbfd" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.034">
+    <testcase name="Status 200" time="0.034" classname="02CardapioEEstoqueEstoqueRecifeGerente"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Ajuste de estoque (gerente, auditado)" id="c34e952c-d1d9-434e-84f3-eb39794b9bbd" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.037">
+    <testcase name="Status 200" time="0.037" classname="02CardapioEEstoqueAjusteDeEstoqueGerenteAuditado"/>
+  </testsuite>
+  <testsuite name="02 Cardápio e estoque / Ajuste em outra unidade (403)" id="58dbeaa5-246a-4d0e-bcb8-b06a060e63a2" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="Status 403" time="0.008" classname="02CardapioEEstoqueAjusteEmOutraUnidade403"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Pedido pelo APP (cliente)" id="9810fa8f-cad5-4f5b-899d-fe133532b3cb" timestamp="2026-11-16T17:51:54.239Z" tests="3" failures="0" errors="0" time="0.088">
+    <testcase name="Status 201" time="0.088" classname="03PedidosMulticanalPedidoPeloAppCliente"/>
+    <testcase name="Canal APP gravado" time="0.088" classname="03PedidosMulticanalPedidoPeloAppCliente"/>
+    <testcase name="Total 38.00 pelo cardápio" time="0.088" classname="03PedidosMulticanalPedidoPeloAppCliente"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Pedido no BALCAO (atendente)" id="dbcbf60e-7f3d-4f4b-836d-2e6ecee3de6e" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.018">
+    <testcase name="Status 201" time="0.018" classname="03PedidosMulticanalPedidoNoBalcaoAtendente"/>
+    <testcase name="Canal BALCAO" time="0.018" classname="03PedidosMulticanalPedidoNoBalcaoAtendente"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Pedido PICKUP (cliente)" id="4207d3b4-1961-45e7-b6d4-2051c9e6f6fc" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.014">
+    <testcase name="Status 201" time="0.014" classname="03PedidosMulticanalPedidoPickupCliente"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Pedido sem canal (400)" id="b039e950-4fbc-4445-ab37-c8566f7103a1" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.019">
+    <testcase name="Status 400" time="0.019" classname="03PedidosMulticanalPedidoSemCanal400"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Produto fora do cardápio da unidade (422)" id="5879a959-ee07-40a0-9ef5-57cbb7b11ce7" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="Status 422" time="0.011" classname="03PedidosMulticanalProdutoForaDoCardapioDaUnidade422"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Estoque insuficiente (409)" id="5b917534-1f37-4c4f-ae21-be39a2042da2" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.013">
+    <testcase name="Status 409" time="0.013" classname="03PedidosMulticanalEstoqueInsuficiente409"/>
+  </testsuite>
+  <testsuite name="03 Pedidos multicanal / Consultar pedido" id="4d4f3bde-5fea-4359-a95c-2980b62848f6" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.016">
+    <testcase name="Status 200" time="0.016" classname="03PedidosMulticanalConsultarPedido"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Solicitar pagamento PIX" id="f6e3bc07-4ef1-4597-ab37-faf6456f9733" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.037">
+    <testcase name="Status 201" time="0.037" classname="04PagamentoExternoSolicitarPagamentoPix"/>
+    <testcase name="Aprovado e pedido PAGO" time="0.037" classname="04PagamentoExternoSolicitarPagamentoPix"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Pagar pedido já pago (409)" id="fc662d66-0c85-4b8b-b606-27f051a145b2" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="Status 409" time="0.007" classname="04PagamentoExternoPagarPedidoJaPago409"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Webhook do provedor (1ª vez)" id="d6ab71fd-eebd-420e-8751-4382973907c6" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.023">
+    <testcase name="Status 200" time="0.023" classname="04PagamentoExternoWebhookDoProvedor1Vez"/>
+    <testcase name="Processado" time="0.023" classname="04PagamentoExternoWebhookDoProvedor1Vez"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Webhook repetido (ignorado)" id="0f85c8bc-8dd0-4487-af48-b37fe1674788" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="Status 200" time="0.007" classname="04PagamentoExternoWebhookRepetidoIgnorado"/>
+    <testcase name="Duplicado não reprocessa" time="0.007" classname="04PagamentoExternoWebhookRepetidoIgnorado"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Webhook sem segredo (401)" id="4dc3017a-2e48-41b1-a6a7-4604f7a86289" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="Status 401" time="0.004" classname="04PagamentoExternoWebhookSemSegredo401"/>
+  </testsuite>
+  <testsuite name="04 Pagamento externo / Pagar pedido de balcão" id="75ae8fb0-1da1-477b-a815-43bea67ed529" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.018">
+    <testcase name="Status 201" time="0.018" classname="04PagamentoExternoPagarPedidoDeBalcao"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Fila da cozinha (sem dados pessoais)" id="9d44f942-a718-4267-bd5d-c5a60c74f971" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.017">
+    <testcase name="Status 200" time="0.017" classname="05PreparoCancelamentoEDescontoFilaDaCozinhaSemDadosPessoais"/>
+    <testcase name="Sem clienteId/total" time="0.017" classname="05PreparoCancelamentoEDescontoFilaDaCozinhaSemDadosPessoais"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Cozinha: EM_PREPARO" id="61b30dd1-1ae0-4aa4-a254-69bc5f0a7084" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.019">
+    <testcase name="Status 200" time="0.019" classname="05PreparoCancelamentoEDescontoCozinhaEmPreparo"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Cozinha tenta ENTREGUE (403)" id="2f5fe588-afe9-44d4-8e49-dc7d289b926a" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="Status 403" time="0.008" classname="05PreparoCancelamentoEDescontoCozinhaTentaEntregue403"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Cozinha: PRONTO" id="8b44a690-b8a4-4ce2-b5f0-351f9415f665" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="Status 200" time="0.011" classname="05PreparoCancelamentoEDescontoCozinhaPronto"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Atendente: ENTREGUE" id="520b11b0-0142-4b77-9423-74decbec3630" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="Status 200" time="0.011" classname="05PreparoCancelamentoEDescontoAtendenteEntregue"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Atendente: desconto acima de 10% (422)" id="b0ff6836-846e-43f1-a99b-40dcf13204ed" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.017">
+    <testcase name="Status 422" time="0.017" classname="05PreparoCancelamentoEDescontoAtendenteDescontoAcimaDe10422"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Gerente: desconto de 20%" id="07d100e2-e3ce-4807-afab-0543d683163b" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.012">
+    <testcase name="Status 200" time="0.012" classname="05PreparoCancelamentoEDescontoGerenteDescontoDe20"/>
+    <testcase name="Desconto aplicado" time="0.012" classname="05PreparoCancelamentoEDescontoGerenteDescontoDe20"/>
+  </testsuite>
+  <testsuite name="05 Preparo, cancelamento e desconto / Atendente cancela pedido" id="039ebeec-c731-4e33-9c93-4206ddc2f4b5" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.023">
+    <testcase name="Status 200" time="0.023" classname="05PreparoCancelamentoEDescontoAtendenteCancelaPedido"/>
+    <testcase name="CANCELADO" time="0.023" classname="05PreparoCancelamentoEDescontoAtendenteCancelaPedido"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Gerente consulta cliente (CPF mascarado, acesso registrado)" id="a3ebc2ce-ebab-4bad-aef1-59e487948a27" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.018">
+    <testcase name="Status 200" time="0.018" classname="06LgpdEAuditoriaGerenteConsultaClienteCpfMascaradoAcessoRegistrado"/>
+    <testcase name="CPF mascarado" time="0.018" classname="06LgpdEAuditoriaGerenteConsultaClienteCpfMascaradoAcessoRegistrado"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Auditoria da unidade (gerente)" id="3c18c6ee-88a5-476a-bfbc-3e6f2843bfcf" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.023">
+    <testcase name="Status 200" time="0.023" classname="06LgpdEAuditoriaAuditoriaDaUnidadeGerente"/>
+    <testcase name="Há registros" time="0.023" classname="06LgpdEAuditoriaAuditoriaDaUnidadeGerente"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Auditoria de cancelamentos (matriz)" id="9ec9c400-c021-41e3-8ebd-9f3f5c790b6a" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="Status 200" time="0.007" classname="06LgpdEAuditoriaAuditoriaDeCancelamentosMatriz"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Novo cliente revoga marketing" id="36470a24-3241-4426-b8dc-e0c0de3ddccf" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.020">
+    <testcase name="Status 200" time="0.020" classname="06LgpdEAuditoriaNovoClienteRevogaMarketing"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Novo cliente anonimiza a conta" id="8173741f-b52f-45f7-b8ae-aaa2bb43967b" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.091">
+    <testcase name="Status 204" time="0.091" classname="06LgpdEAuditoriaNovoClienteAnonimizaAConta"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Matriz confere anonimização" id="ad8e0849-a4bd-4384-886b-650d46f7ef8b" timestamp="2026-11-16T17:51:54.239Z" tests="2" failures="0" errors="0" time="0.015">
+    <testcase name="Status 200" time="0.015" classname="06LgpdEAuditoriaMatrizConfereAnonimizacao"/>
+    <testcase name="Anonimizado" time="0.015" classname="06LgpdEAuditoriaMatrizConfereAnonimizacao"/>
+  </testsuite>
+  <testsuite name="06 LGPD e auditoria / Relatório de vendas (matriz)" id="003a3e39-6950-49b0-b8f3-6d436f1f6291" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.014">
+    <testcase name="Status 200" time="0.014" classname="06LgpdEAuditoriaRelatorioDeVendasMatriz"/>
+  </testsuite>
+  <testsuite name="07 Segurança (negativos) / Sem token (401)" id="15fe7386-6385-427a-b630-267b4ec430a7" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="Status 401" time="0.007" classname="07SegurancaNegativosSemToken401"/>
+  </testsuite>
+  <testsuite name="07 Segurança (negativos) / Cozinha acessa auditoria (403)" id="f2a83b2d-534a-4126-a90f-0928d378ddd0" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="Status 403" time="0.006" classname="07SegurancaNegativosCozinhaAcessaAuditoria403"/>
+  </testsuite>
+  <testsuite name="07 Segurança (negativos) / Cliente acessa relatório (403)" id="382a3726-15cc-4957-be31-85dabdf7a6db" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="Status 403" time="0.008" classname="07SegurancaNegativosClienteAcessaRelatorio403"/>
+  </testsuite>
+  <testsuite name="07 Segurança (negativos) / Gerente Salvador lê auditoria de Recife (403)" id="1cc58a83-a692-4774-9ef0-493160225df3" timestamp="2026-11-16T17:51:54.239Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="Status 403" time="0.004" classname="07SegurancaNegativosGerenteSalvadorLeAuditoriaDeRecife403"/>
+  </testsuite>
+</testsuites>
