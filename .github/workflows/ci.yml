@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  testes:
+    name: Build e testes automatizados (JUnit + MockMvc)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build e testes
+        run: mvn -B verify
+      - name: Relatório de testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-junit
+          path: target/surefire-reports/
+      - name: Resumo no GitHub
+        if: always()
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import glob, xml.etree.ElementTree as ET
+          print("| Classe | Teste | Resultado | Tempo (s) |\n|---|---|---|---|")
+          for f in sorted(glob.glob("target/surefire-reports/TEST-*.xml")):
+              for tc in ET.parse(f).getroot().iter("testcase"):
+                  r = "FALHOU" if tc.find("failure") is not None or tc.find("error") is not None else "OK"
+                  print(f"| {tc.get('classname').split('.')[-1]} | {tc.get('name')} | {r} | {tc.get('time')} |")
+          PY
+
+  postman:
+    name: Coleção Postman (Newman) contra PostgreSQL
+    runs-on: ubuntu-latest
+    needs: testes
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: raizes
+          POSTGRES_USER: raizes
+          POSTGRES_PASSWORD: raizes
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U raizes" --health-interval 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Empacotar
+        run: mvn -B -q package -DskipTests
+      - name: Subir a API
+        run: |
+          nohup java -jar target/raizes-nordeste-api-1.0.0.jar > api.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:8080/actuator/health && break; sleep 2; done
+      - name: Rodar coleção com Newman
+        run: |
+          npm install -g newman newman-reporter-htmlextra
+          newman run postman/raizes-nordeste.postman_collection.json \
+            -r cli,htmlextra,junit,json \
+            --reporter-htmlextra-export newman/relatorio-newman.html \
+            --reporter-junit-export newman/relatorio-newman.xml \
+            --reporter-json-export newman/relatorio-newman.json
+      - name: Publicar relatório Newman
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-newman
+          path: |
+            newman/
+            api.log
+
+  evidencias:
+    name: Publicar evidências na branch relatorios-testes
+    runs-on: ubuntu-latest
+    needs: [testes, postman]
+    if: always() && github.event_name != 'pull_request'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: evidencias
+      - name: Publicar
+        run: |
+          cd evidencias
+          git init -q -b relatorios-testes
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          echo "Execução ${{ github.run_id }} do commit ${{ github.sha }} em $(date -u +%FT%TZ)" > EXECUCAO.txt
+          git add -A && git commit -qm "Evidências da execução ${{ github.run_id }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" relatorios-testes
