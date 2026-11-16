@@ -45,7 +45,7 @@ class AutenticacaoESegurancaTest extends TesteIntegracaoBase {
     @Test
     @DisplayName("CT05 [+] Cadastro de cliente com consentimento explícito de fidelidade")
     void cadastroComConsentimento() throws Exception {
-        var corpo = Map.of("nome", "Cícero Romão", "email", "cicero@email.com", "senha", "SenhaForte1",
+        var corpo = Map.of("nome", "Cícero Romão", "email", "cicero@email.com", "senha", "Senha@123",
                 "aceiteTermosUso", true, "canalOrigem", "APP",
                 "consentimentos", Map.of("PROGRAMA_FIDELIDADE", true, "MARKETING_EMAIL", false));
         post_("/api/auth/registro", null, corpo)
