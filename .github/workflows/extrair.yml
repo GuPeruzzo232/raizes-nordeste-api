@@ -1,0 +1,23 @@
+name: Extrair pacote
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  extrair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extrair projeto
+        run: |
+          if [ -f raizes-nordeste-api.tar.gz ]; then
+            tar xzf raizes-nordeste-api.tar.gz --exclude='.github'
+            git rm -q raizes-nordeste-api.tar.gz
+            git config user.name "Gustavo Peruzzo"
+            git config user.email "GuPeruzzo232@users.noreply.github.com"
+            git add -A
+            git commit -m "Estrutura inicial do projeto"
+            git push
+          fi
