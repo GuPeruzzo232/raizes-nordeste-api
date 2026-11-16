@@ -1,0 +1,11 @@
+stateDiagram-v2
+  [*] --> AGUARDANDO_PAGAMENTO : pedido criado (qualquer canal)\nestoque reservado
+  AGUARDANDO_PAGAMENTO --> PAGO : pagamento APROVADO\n(resposta ou webhook)
+  AGUARDANDO_PAGAMENTO --> CANCELADO : cliente/atendente/gerente\nestoque devolvido
+  PAGO --> EM_PREPARO : cozinha/gerente
+  PAGO --> CANCELADO : atendente/gerente\n(estorno necessário)
+  EM_PREPARO --> PRONTO : cozinha/gerente
+  EM_PREPARO --> CANCELADO : gerente
+  PRONTO --> ENTREGUE : atendente/gerente
+  ENTREGUE --> [*]
+  CANCELADO --> [*]

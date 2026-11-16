@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph Canais
+    APP[App mobile]
+    TOT[Totem]
+    BAL[Balcão / PDV]
+    PK[Pick-up / Web]
+  end
+  LB[Balanceador nginx]
+  subgraph API["API Raízes do Nordeste (N réplicas stateless)"]
+    SEC[Segurança JWT\n+ perfis]
+    CTRL[Controllers REST\n+ DTOs + validação]
+    SRV[Serviços de domínio\nPedido · Catálogo · Pagamento\nCliente/LGPD · Auditoria · Relatório]
+    INT[Integração pagamento\ndisjuntor + simulador]
+    SCH[Agendador de\nreprocessamento]
+    REP[Repositórios JPA]
+  end
+  DB[(PostgreSQL\nFlyway)]
+  PSP[Provedor de pagamento externo]
+  APP & TOT & BAL & PK -->|HTTPS + JSON| LB --> SEC --> CTRL --> SRV
+  SRV --> REP --> DB
+  SRV --> INT -->|cobrança| PSP
+  PSP -->|webhook| LB
+  SCH --> SRV

@@ -1,0 +1,37 @@
+sequenceDiagram
+  autonumber
+  actor C as Cliente (App/Totem)
+  participant API as API Raízes
+  participant DB as PostgreSQL
+  participant CB as Disjuntor
+  participant PSP as Provedor de pagamento
+  C->>API: POST /pedidos/{id}/pagamentos (Idempotency-Key)
+  API->>DB: [Tx 1] valida pedido e grava Pagamento PENDENTE
+  API->>CB: cobrar(chave)
+  alt circuito fechado
+    CB->>PSP: cobrança (mesma chave)
+    alt provedor responde
+      PSP-->>CB: APROVADO / RECUSADO + transacaoId
+      CB-->>API: resposta
+      API->>DB: [Tx 2] registra status, pedido → PAGO, pontos, auditoria
+      API-->>C: 201 Created
+    else timeout / erro 5xx
+      PSP--xCB: sem resposta
+      CB-->>API: GatewayIndisponível
+      API->>DB: [Tx 2] status FALHA_COMUNICACAO
+      API-->>C: 202 Accepted (será reprocessado)
+    end
+  else circuito aberto
+    CB-->>API: falha imediata (sem chamar o provedor)
+    API->>DB: [Tx 2] status FALHA_COMUNICACAO
+    API-->>C: 202 Accepted
+  end
+  Note over API,PSP: Agendador reenvia FALHA_COMUNICACAO com a mesma chave (sem cobrança dupla)
+  PSP->>API: POST /pagamentos/webhook (eventoId, X-Webhook-Secret)
+  API->>DB: eventoId já existe?
+  alt evento novo
+    API->>DB: grava evento + aplica status + auditoria
+    API-->>PSP: 200 processado=true
+  else evento repetido
+    API-->>PSP: 200 processado=false (ignorado)
+  end

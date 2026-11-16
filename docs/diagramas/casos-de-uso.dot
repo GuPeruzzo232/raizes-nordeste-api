@@ -1,0 +1,38 @@
+digraph UC {
+  rankdir=LR; graph [fontname="Arial", splines=true, nodesep=0.25, ranksep=1.1, pad=0.3];
+  node [fontname="Arial", fontsize=11]; edge [arrowhead=none, color="#555555"];
+  subgraph atores_esq { rank=same;
+    Cliente [shape=none, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="26">&#9786;</FONT></TD></TR><TR><TD><B>Cliente</B></TD></TR></TABLE>>];
+    Atendente [shape=none, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="26">&#9786;</FONT></TD></TR><TR><TD><B>Atendente</B></TD></TR></TABLE>>];
+    Cozinha [shape=none, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="26">&#9786;</FONT></TD></TR><TR><TD><B>Cozinha</B></TD></TR></TABLE>>];
+  }
+  subgraph cluster_sis { label="Sistema Raízes do Nordeste (API)"; fontname="Arial Bold"; fontsize=13; style=rounded; color="#333333";
+    node [shape=ellipse, style=filled, fillcolor="#F3E9D2", color="#8A5A2B", width=2.6];
+    uc1 [label="UC01 Autenticar-se"];
+    uc2 [label="UC02 Cadastrar-se com\nconsentimento LGPD"];
+    uc3 [label="UC03 Consultar cardápio\nda unidade"];
+    uc4 [label="UC04 Registrar pedido\n(app/totem/balcão/pick-up)"];
+    uc5 [label="UC05 Pagar pedido"];
+    uc6 [label="UC06 Acompanhar pedido"];
+    uc7 [label="UC07 Cancelar pedido"];
+    uc8 [label="UC08 Gerir consentimentos\ne anonimizar conta"];
+    uc9 [label="UC09 Consultar fila e\natualizar preparo"];
+    uc10 [label="UC10 Aplicar desconto"];
+    uc11 [label="UC11 Manter cardápio\ne ajustar estoque"];
+    uc12 [label="UC12 Consultar auditoria\ne relatórios"];
+    uc13 [label="UC13 Cadastrar produto\ncorporativo"];
+    uc14 [label="UC14 Notificar resultado\ndo pagamento (webhook)"];
+    uc15 [label="UC15 Consultar dados de\ncliente (acesso registrado)"];
+  }
+  subgraph atores_dir { rank=same;
+    Gerente [shape=none, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="26">&#9786;</FONT></TD></TR><TR><TD><B>Gerente</B></TD></TR></TABLE>>];
+    Matriz [shape=none, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT POINT-SIZE="26">&#9786;</FONT></TD></TR><TR><TD><B>Matriz</B></TD></TR></TABLE>>];
+    PSP [shape=box, style=rounded, label="«sistema»\nProvedor de\npagamento", fontsize=11];
+  }
+  Cliente -> {uc1 uc2 uc3 uc4 uc5 uc6 uc7 uc8};
+  Atendente -> {uc1 uc4 uc5 uc7 uc10 uc15};
+  Cozinha -> {uc1 uc9};
+  uc9 -> Gerente; uc10 -> Gerente; uc11 -> Gerente; uc12 -> Gerente; uc7 -> Gerente; uc15 -> Gerente;
+  uc11 -> Matriz; uc12 -> Matriz; uc13 -> Matriz; uc15 -> Matriz;
+  uc14 -> PSP; uc5 -> PSP [style=dashed, label="«include»", fontsize=9, arrowhead=vee];
+}

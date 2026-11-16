@@ -1,0 +1,134 @@
+classDiagram
+direction TB
+class Unidade {
+  +Long id
+  +String nome
+  +String cidade
+  +String uf
+  +boolean ativa
+}
+class Produto {
+  +Long id
+  +String nome
+  +String categoria
+  +BigDecimal precoBase
+  +boolean sazonal
+  +boolean ativo
+}
+class ItemCardapio {
+  +BigDecimal preco
+  +boolean disponivel
+  +LocalDate inicioVigencia
+  +LocalDate fimVigencia
+  +vigenteEm(LocalDate) boolean
+}
+class Estoque {
+  +int quantidade
+  +Instant atualizadoEm
+  +definirQuantidade(int)
+}
+class Usuario {
+  +Long id
+  +String nome
+  +String email
+  +String senhaHash
+  +Perfil perfil
+  +String cpf
+  +boolean anonimizado
+  +anonimizar(String)
+}
+class Consentimento {
+  +FinalidadeConsentimento finalidade
+  +boolean concedido
+  +String versaoTermo
+  +Instant registradoEm
+}
+class ContaFidelidade {
+  +int pontos
+  +creditar(int)
+}
+class Pedido {
+  +Long id
+  +CanalPedido canal
+  +StatusPedido status
+  +BigDecimal subtotal
+  +BigDecimal desconto
+  +BigDecimal total
+  +String idempotencyKey
+  +Long versao
+  +adicionarItem(Produto, int, BigDecimal)
+  +aplicarDesconto(BigDecimal)
+  +alterarStatus(StatusPedido)
+  +cancelar(String)
+}
+class ItemPedido {
+  +int quantidade
+  +BigDecimal precoUnitario
+  +BigDecimal subtotal
+}
+class Pagamento {
+  +BigDecimal valor
+  +MetodoPagamento metodo
+  +StatusPagamento status
+  +String transacaoExterna
+  +String idempotencyKey
+  +int tentativas
+  +atualizar(StatusPagamento, String, String)
+}
+class EventoPagamentoRecebido {
+  +String eventoId
+  +String statusRecebido
+}
+class RegistroAuditoria {
+  +Long usuarioId
+  +String perfil
+  +Long unidadeId
+  +String acao
+  +String entidade
+  +Long entidadeId
+  +String detalhes
+  +String ip
+  +Instant dataHora
+}
+class CanalPedido {
+  <<enumeration>>
+  APP
+  TOTEM
+  BALCAO
+  PICKUP
+  WEB
+}
+class StatusPedido {
+  <<enumeration>>
+  AGUARDANDO_PAGAMENTO
+  PAGO
+  EM_PREPARO
+  PRONTO
+  ENTREGUE
+  CANCELADO
+}
+class Perfil {
+  <<enumeration>>
+  CLIENTE
+  ATENDENTE
+  COZINHA
+  GERENTE
+  MATRIZ
+}
+Unidade "1" --> "*" ItemCardapio
+Produto "1" --> "*" ItemCardapio
+Unidade "1" --> "*" Estoque
+Produto "1" --> "*" Estoque
+Unidade "0..1" <-- "*" Usuario : lotado em
+Usuario "1" --> "*" Consentimento
+Usuario "1" --> "0..1" ContaFidelidade
+Unidade "1" <-- "*" Pedido
+Usuario "0..1" <-- "*" Pedido : cliente
+Pedido "1" *-- "1..*" ItemPedido
+ItemPedido "*" --> "1" Produto
+Pedido "1" --> "*" Pagamento
+Pagamento "1" --> "*" EventoPagamentoRecebido
+Pedido ..> CanalPedido
+Pedido ..> StatusPedido
+Usuario ..> Perfil
+Pedido <.. RegistroAuditoria : rastreia

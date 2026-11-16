@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: raizes-nordeste-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/raizes}
+    username: ${DB_USER:raizes}
+    password: ${DB_PASSWORD:raizes}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX:20}
+      minimum-idle: 5
+      connection-timeout: 3000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none  # o esquema é versionado pelo Flyway
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+  tomcat:
+    threads:
+      max: 200
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  fuso: America/Recife
+  seed: ${APP_SEED:true}
+  jwt:
+    segredo: ${JWT_SEGREDO:troque-este-segredo-em-producao-com-32-bytes-ou-mais}
+    expiracao-minutos: 120
+  lgpd:
+    versao-termo: "2026.1"
+  pedido:
+    limite-desconto-gerente-percentual: 30
+  pagamento:
+    webhook-segredo: ${WEBHOOK_SEGREDO:segredo-webhook-dev}
+    max-tentativas: 5
+    simulador:
+      modo: APROVAR
+    disjuntor:
+      limite-falhas: 3
+      segundos-aberto: 30
+    reprocessamento:
+      habilitado: true
+      intervalo-ms: 30000

@@ -1,0 +1,102 @@
+erDiagram
+  UNIDADE ||--o{ ITEM_CARDAPIO : "oferece"
+  PRODUTO ||--o{ ITEM_CARDAPIO : "aparece em"
+  UNIDADE ||--o{ ESTOQUE : "mantém"
+  PRODUTO ||--o{ ESTOQUE : "estocado em"
+  UNIDADE |o--o{ USUARIO : "lota"
+  USUARIO ||--o{ CONSENTIMENTO : "registra"
+  USUARIO ||--o| CONTA_FIDELIDADE : "possui"
+  UNIDADE ||--o{ PEDIDO : "recebe"
+  USUARIO |o--o{ PEDIDO : "cliente"
+  USUARIO ||--o{ PEDIDO : "criado_por"
+  PEDIDO ||--|{ ITEM_PEDIDO : "contém"
+  PRODUTO ||--o{ ITEM_PEDIDO : "vendido em"
+  PEDIDO ||--o{ PAGAMENTO : "pago por"
+  PAGAMENTO ||--o{ EVENTO_PAGAMENTO_RECEBIDO : "notificado por"
+
+  UNIDADE { bigint id PK
+    varchar nome
+    varchar cidade
+    varchar uf
+    boolean ativa }
+  PRODUTO { bigint id PK
+    varchar nome
+    varchar categoria
+    numeric preco_base
+    boolean sazonal
+    boolean ativo }
+  ITEM_CARDAPIO { bigint id PK
+    bigint unidade_id FK
+    bigint produto_id FK
+    numeric preco
+    boolean disponivel
+    date inicio_vigencia
+    date fim_vigencia }
+  ESTOQUE { bigint id PK
+    bigint unidade_id FK
+    bigint produto_id FK
+    integer quantidade
+    timestamptz atualizado_em }
+  USUARIO { bigint id PK
+    varchar nome
+    varchar email UK
+    varchar senha_hash
+    varchar perfil
+    bigint unidade_id FK
+    varchar cpf
+    boolean anonimizado
+    boolean ativo }
+  CONSENTIMENTO { bigint id PK
+    bigint usuario_id FK
+    varchar finalidade
+    boolean concedido
+    varchar versao_termo
+    varchar canal_origem
+    timestamptz registrado_em }
+  CONTA_FIDELIDADE { bigint id PK
+    bigint usuario_id FK
+    integer pontos }
+  PEDIDO { bigint id PK
+    bigint unidade_id FK
+    bigint cliente_id FK
+    bigint criado_por_id FK
+    varchar canal
+    varchar status
+    numeric subtotal
+    numeric desconto
+    numeric total
+    varchar idempotency_key UK
+    varchar motivo_cancelamento
+    timestamptz criado_em
+    bigint versao }
+  ITEM_PEDIDO { bigint id PK
+    bigint pedido_id FK
+    bigint produto_id FK
+    integer quantidade
+    numeric preco_unitario
+    numeric subtotal }
+  PAGAMENTO { bigint id PK
+    bigint pedido_id FK
+    numeric valor
+    varchar metodo
+    varchar status
+    varchar transacao_externa UK
+    varchar idempotency_key UK
+    integer tentativas
+    bigint versao }
+  EVENTO_PAGAMENTO_RECEBIDO { bigint id PK
+    varchar evento_id UK
+    bigint pagamento_id FK
+    varchar status_recebido
+    timestamptz recebido_em }
+  REGISTRO_AUDITORIA { bigint id PK
+    bigint usuario_id
+    varchar usuario_email
+    varchar perfil
+    bigint unidade_id
+    varchar acao
+    varchar entidade
+    bigint entidade_id
+    varchar detalhes
+    varchar ip
+    timestamptz data_hora }
